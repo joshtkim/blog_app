@@ -1,0 +1,25 @@
+.navBar {
+    display: flex;
+    border: 1px solid black;
+    margin: 0px;
+    padding: 10px;
+    justify-content: space-evenly
+}
+
+/* visited link */
+a:visited {
+    color: rgb(9, 24, 230);
+}
+
+/* mouse over link */
+a:hover {
+    color: rgb(187, 102, 230);
+}
+
+a {  
+    text-decoration: none;
+    color: ivory;
+    font-family: 'Bungee';
+}
+
+
