@@ -11,20 +11,34 @@ import Home from './Components/Home.js'
 import Header from './Components/Header.js'
 import Navbar from './Components/Navbar.js'
 import Blogs from './Container/Blogs.js'
+import Post from './Container/Post.js'
 import data from './blog.json'
 
 
 
 let App = () => {
 
-  // let [foods, setFoods] = useState( [] )
-  // let [word, setWord] = useState()
 
-  // console.log("Food", foods)
+  const [blog, setBlog] = useState({
+    id: "" ,
+    category: "" ,
+    title : "" ,
+    postedOn: "" ,
+    author: "" ,
+    // image: "" ,
+    text: ""
+  });
 
-  // let handleClick = (evt) => {
-  //   setFoods((prevFoods) => {return [...prevFoods, "new word"]})
-  // }
+  const [slug, setSlug] = useState('');
+
+
+  useEffect(() => {
+      // const slug = props.match.params.slug;
+      const blog = data.blogs.find(blog => blog.slug == slug);
+      setBlog(blog);
+      // setSlug(slug)
+  }, [blog]);
+
 
   let renderHome = () => {
     return( 
@@ -35,7 +49,20 @@ let App = () => {
   let renderBlogs = () => {
     return(
       <Blogs 
-      data = {data}/>
+      data = {data}
+      blog = {blog}
+      setBlog = {setBlog}/>
+    )
+  }
+
+  let renderPost = () => {
+    return(
+      <Post 
+      data = {data}
+      blog = {blog}
+      setBlog = {setBlog}
+      slug={slug}
+      setSlug={setSlug}/>
     )
   }
 
@@ -48,6 +75,7 @@ let App = () => {
       <Switch>
         <Route path="/home" render={() => renderHome() } />
         <Route path="/blogs"  render={() => renderBlogs() }/>
+        <Route path="/blogs/:slug" render={() => renderPost() }/>
       </Switch>
       </div>
     </Router>
